@@ -2,15 +2,15 @@
 
 Inflation calculator, written in Go, calculates the current equivalent of an amount from a given year,
 taking into account inflation.
-It allows users to input an amount and the year it was earned, and it returns the current value of that amount.
+It allows users to input an amount and the year it was earned, and returns the current value of that amount.
 
 ## Features
 
-* Calculates the current equivalent of an amount from a given year, taking into account inflation
-* Uses official inflation data of a country
+* Calculates the current equivalent of an amount from a given year, accounting for inflation
+* Refers to the official inflation data of a country available on World Bank's [inflation database](https://www.worldbank.org/en/research/brief/inflation-database) 
 * Provides a simple and easy-to-use interface
-* It Can be used to compare the value of money over time
-* It Can be used to make informed financial decisions
+* It can be used to compare the value of money over time
+* It can be used to make informed financial decisions
 
 ## Usage
 
