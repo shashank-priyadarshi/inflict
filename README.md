@@ -22,7 +22,9 @@ To use the application, run the following command:
 
 where:
 
-* `amount` is the amount you want to calculate the current equivalent of
+* `inflation_type` is one of the types available in the [inflation database](https://www.worldbank.org/en/research/brief/inflation-database)
+* `country` is the country amount has been earned in
+* `value` is the amount you want to calculate the current equivalent of
 * `year` is the year the amount was earned
 
 For example, to calculate the current equivalent of $100 earned in 2000, you would run the following command:
