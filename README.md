@@ -17,7 +17,7 @@ It allows users to input an amount and the year it was earned, and returns the c
 To use the application, run the following command:
 
 ```bash
-inflict amount year
+ inflict [inflation_type] [country] [value] [year]
 ```
 
 where:
@@ -28,7 +28,7 @@ where:
 For example, to calculate the current equivalent of $100 earned in 2000, you would run the following command:
 
 ```bash
-inflict 100 2000
+inflict "ccpi_a_e" "ICELAND" "2011" "100000"
 ```
 
 The application would then output the current equivalent of $100 earned in 2000.

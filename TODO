@@ -5,15 +5,17 @@
   - Parse Excel: DONE
   - Fetch country list and relevant inflation data: DONE
   - Implement country based inflation data calculator: DONE
-  - Enable sheet wise data calculation for all sheets: TODO
-  - Enable default value for any missing value of inflation: TODO
-  - Enable displaying fields for which default value was considered: TODO
+  - Implement sheet wise data calculation for all sheets: TODO
+  - Implement default value for any missing value of inflation: TODO
+  - Implement displaying fields for which default value was considered: TODO
+  - Implement monthly & quarterly inflation calculation: TODO
 
 - CLI: TODO
   - Implement basic CLI for inflict: DONE
   - Standardize logging to console: TODO
   - Update help command: TODO
   - Move root command arguments to subcommand: TODO
+  - Add accuracy subcommand to enable monthly/quarterly inflation calculation: TODO
 
 - Tests: TODO
 

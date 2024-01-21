@@ -8,8 +8,8 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "inflict [country] [value] [year] [inflation_type]",
-	Short: "Input a country name, an amount, the year it was earned and the type of inflation to adjust for, to fetch the current value of the amount",
+	Use:   "inflict [inflation_type] [country] [value] [year]",
+	Short: "Input the type of inflation to adjust for, a country name, an amount and the year it was earned, to fetch the current value of the amount",
 	Args:  cobra.ExactArgs(4),
 	Run: func(cmd *cobra.Command, args []string) {
 
