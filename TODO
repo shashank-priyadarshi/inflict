@@ -4,10 +4,18 @@
   - Excel data fetch from World Banks [Inflation Database](https://www.worldbank.org/en/research/brief/inflation-database): TODO
   - Parse Excel: DONE
   - Fetch country list and relevant inflation data: DONE
-  - Implement country based inflation data calculator: TODO
+  - Implement country based inflation data calculator: DONE
+  - Enable sheet wise data calculation for all sheets: TODO
+  - Enable default value for any missing value of inflation: TODO
+  - Enable displaying fields for which default value was considered: TODO
 
 - CLI: TODO
+  - Implement basic CLI for inflict: DONE
+  - Standardize logging to console: TODO
+  - Update help command: TODO
+  - Move root command arguments to subcommand: TODO
 
 - Tests: TODO
 
 - Documentation: TODO
+  - Add descriptions for various inflation types: TODO
