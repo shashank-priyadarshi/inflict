@@ -1,0 +1,13 @@
+# TODO
+
+- Application: IN PROGRESS
+  - Excel data fetch from World Banks [Inflation Database](https://www.worldbank.org/en/research/brief/inflation-database): TODO
+  - Parse Excel: DONE
+  - Fetch country list and relevant inflation data: DONE
+  - Implement country based inflation data calculator: TODO
+
+- CLI: TODO
+
+- Tests: TODO
+
+- Documentation: TODO
