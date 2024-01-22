@@ -13,7 +13,7 @@
 - CLI: TODO
   - Implement basic CLI for inflict: DONE
   - Standardize logging to console: TODO
-  - Update help command: TODO
+  - Update help command: DONE
   - Move root command arguments to subcommand: TODO
   - Add accuracy subcommand to enable monthly/quarterly inflation calculation: TODO
 

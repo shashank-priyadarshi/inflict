@@ -64,11 +64,14 @@ var (
 	row_map         = make(map[sheet_type]map[string]row_data) // make(map[sheet_type]map[string]row_data): represents sheet type mapping that contains a country wise map
 )
 
-func calculator(sheet sheet_type, country, year_string string, amount float64) {
+func calculator(amount float64, year_string string, args map[string][]string) {
 	var ok bool
 	var value map[string]row_data
 
-	if value, ok = row_map[sheet]; !ok {
+	sheet := args["types"][0]
+	country := args["countries"][0]
+
+	if value, ok = row_map[sheet_type(sheet)]; !ok {
 		fmt.Printf("inflation type isn't supported %s\n", sheet)
 		return
 	}
