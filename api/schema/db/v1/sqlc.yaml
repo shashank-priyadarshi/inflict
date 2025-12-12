@@ -1,0 +1,122 @@
+version: "2"
+
+cloud:
+  organization: ${INFLICT_SQLC_CLOUD_ORG}
+  project: ${INFLICT_SQLC_CLOUD_PROJECT}
+  hostname: ${INFLICT_SQLC_CLOUD_HOSTNAME}
+
+servers: []
+
+sql:
+  - engine: postgresql
+    # database:
+    #   uri: "postgresql://neondb_owner:7Z4JRaLTvexl@ep-round-water-a8gffrbd-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require"
+    schema:
+      - "./migrations/_generated_enums.sql"
+      - "./migrations/schema.sql"
+    queries: ["./operations/commands", "./operations/queries"]
+    strict_function_checks: true
+    gen:
+      go:
+        package: "v1"
+        out: "."
+        sql_package: "pgx/v5"
+        sql_driver: "github.com/jackc/pgx/v5"
+        overrides:
+          - db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+          - nullable: true
+            db_type: "uuid"
+            go_type:
+              import: "github.com/google/uuid"
+              type: "UUID"
+          - db_type: "pg_catalog.timestamp"
+            go_type: "time.Time"
+          - nullable: true
+            db_type: "pg_catalog.timestamp"
+            go_type: "time.Time"
+          - nullable: true
+            db_type: "pg_catalog.bool"
+            go_type: "bool"
+          - column: "amounts.sender"
+            go_type: "string"
+          - column: "amounts.receiver"
+            go_type: "string"
+          - column: "returns.duration"
+            go_type:
+              import: "google.golang.org/protobuf/types/known/durationpb"
+              type: "Duration"
+          - db_type: "pg_catalog.interval"
+            go_type:
+              import: "google.golang.org/protobuf/types/known/durationpb"
+              type: "Duration"
+          - db_type: "amount_type"
+            go_type:
+              import: "go.ssnk.in/inflict/internal/domain"
+              type: "AmountType"
+          - db_type: "rate_type"
+            go_type:
+              import: "go.ssnk.in/inflict/internal/domain"
+              type: "RateType"
+          - db_type: "wealth_type"
+            go_type:
+              import: "go.ssnk.in/inflict/internal/domain"
+              type: "WealthType"
+          - db_type: "member_type"
+            go_type:
+              import: "go.ssnk.in/inflict/internal/domain"
+              type: "MemberType"
+          - db_type: "accomodation_type"
+            go_type:
+              import: "go.ssnk.in/inflict/internal/domain"
+              type: "AccomodationType"
+        emit_db_tags: true
+        emit_prepared_queries: true
+        emit_exact_table_names: true
+        emit_empty_slices: true
+        emit_json_tags: true
+        emit_result_struct_pointers: true
+        emit_params_struct_pointers: true
+        emit_enum_valid_method: true
+        emit_all_enum_values: true
+        emit_sql_as_comment: true
+        #        build_tags: true
+        initialisms:
+          - "id"
+        json_tags_case_style: camel
+        omit_unused_structs: true
+        output_files_suffix: ""
+
+# To skip linting for a query, follow example:
+# /* @sqlc-vet-disable sqlc/db-prepare no-pg */
+# To skip all rules, use /* @sqlc-vet-disable */ without parameters
+rules:
+  # - name: "db-prep"
+  #   rule: "sqlc/db-prepare"
+  - name: no-pg
+    message: "invalid engine: postgresql"
+    rule: |
+      config.engine == "postgresql"
+  - name: no-delete
+    message: "don't use delete statements"
+    rule: |
+      query.sql.contains("DELETE")
+  - name: only-one-param
+    message: "too many parameters"
+    rule: |
+      query.params.size() > 1
+  - name: no-exec
+    message: "don't use exec"
+    rule: |
+      query.cmd == "exec"
+  # SQLCDEBUG=dumpexplain=1: View EXPLAIN ... output for all queries (Use together with a dummy rule)
+  - name: debug
+    rule: "!has(postgresql.explain)"
+  - name: postgresql-query-too-costly
+    message: "Query cost estimate is too high"
+    rule: "postgresql.explain.plan.total_cost > 1.0"
+  - name: postgresql-no-seq-scan
+    message: "Query plan results in a sequential scan"
+    rule: "postgresql.explain.plan.node_type == 'Seq Scan'"

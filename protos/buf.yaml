@@ -1,0 +1,17 @@
+version: v2
+
+# name: inflict
+
+modules:
+  - path: .
+
+deps:
+  - buf.build/googleapis/googleapis
+
+lint:
+  use:
+    - STANDARD
+
+breaking:
+  use:
+    - FILE

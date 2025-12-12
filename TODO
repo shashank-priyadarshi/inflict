@@ -1,23 +1,28 @@
 # TODO
 
-- Application: IN PROGRESS
-  - Excel data fetch from World Banks [Inflation Database](https://www.worldbank.org/en/research/brief/inflation-database): TODO
-  - Parse Excel: DONE
-  - Fetch country list and relevant inflation data: DONE
-  - Implement country based inflation data calculator: DONE
-  - Implement sheet wise data calculation for all sheets: TODO
-  - Implement default value for any missing value of inflation: TODO
-  - Implement displaying fields for which default value was considered: TODO
-  - Implement monthly & quarterly inflation calculation: TODO
+- Application:
+    - api
+        - Setup git hooks
+        - Brainstorm (& Implement) functionality & APIs: IN PROGRESS
+            - Add integration tests for Wealth CRUD
+            - Add placeholders for Wealth CRUD & add unit tests
+            - Implement Wealth CRUD APIs
+        - (Weigh &) design normalized vs denormalized database schemas for backend
+        - Brainstorm (& Implement) request, response payloads
+
+    - client
+        - Add mock payload based on functionality & APIs
+        - (Weigh &) setup module federation (Micro-Frontend based architecture, or at least seamlessly transitioning setup)
+        - Design minimalistic UI
 
 - CLI: TODO
-  - Implement basic CLI for inflict: DONE
-  - Standardize logging to console: TODO
-  - Update help command: DONE
-  - Move root command arguments to subcommand: TODO
-  - Add accuracy subcommand to enable monthly/quarterly inflation calculation: TODO
+    - Expose functionality through gRPC
+    - Implement TUI
 
 - Tests: TODO
+    - Research testing suite with unit, integration & benchmarks for api (Golang) and client (SvelteKit; vitest)
+    - Integrate TDD based development suite for api and client
 
 - Documentation: TODO
-  - Add descriptions for various inflation types: TODO
+    - Research documentation tools for api (Golang) and client (SvelteKit; Hint: Storybook)
+    - Configure auto-generating documentation for api and client

@@ -1,0 +1,21 @@
+syntax="proto3";
+
+package inflict.v1.entities;
+
+import "protos/v1/entities/common.proto";
+import "protos/v1/entities/wealth.proto";
+
+option go_package="go.ssnk.in/inflict/schema/protos/v1/entities;entities";
+
+enum MemberT {
+	Earner = 0;
+	Dependent = 1;
+}
+
+message Member {
+	string id = 1;
+	string name = 2;
+	MemberT type = 3;
+	repeated Accomodation accomodations = 4;
+	Worth net_worth = 5;
+}
