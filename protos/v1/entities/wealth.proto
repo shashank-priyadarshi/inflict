@@ -1,0 +1,45 @@
+syntax="proto3";
+
+package inflict.v1.entities;
+
+import "google/protobuf/duration.proto";
+import "protos/v1/entities/common.proto";
+
+option go_package="go.ssnk.in/inflict/schema/protos/v1/entities;entities";
+
+message Worth {
+	string id = 1;
+	bool deleted = 2;
+	repeated Wealth earnings = 3;
+	repeated Wealth expenses = 4;
+	repeated Wealth liabilities = 5;
+	repeated Wealth savings = 6;
+	repeated Wealth investments = 7;
+	repeated Wealth insurances = 8;
+}
+
+enum WealthT {
+	Earning = 0;
+	Expense = 1;
+	Liability = 2;
+	Saving = 3;
+	Investment = 4;
+	Insurance = 5;
+}
+
+message Wealth {
+	string id = 1;
+	WealthT type = 2; // Redundant because Worth is the primary table for any Entity, Member or Family, Used for development purposes
+	string name = 3;
+	bool deleted = 4;
+	Amount value = 5;
+	repeated Return returns = 6;
+	repeated Maintainance maintainance = 7;
+}
+
+message Return {
+	string id = 1;
+	Rate rate = 2;
+	google.protobuf.Duration duration = 3;
+	Amount maturity_corpus = 4;
+}

@@ -1,0 +1,32 @@
+version: v2
+
+managed:
+  enabled: true
+  disable:
+    - module: buf.build/googleapis/googleapis
+  override:
+    - file_option: go_package_prefix
+      value: go.ssnk.in/inflict/schema
+
+plugins:
+  - remote: buf.build/protocolbuffers/go
+    out: api/schema
+    opt: paths=source_relative
+  - remote: buf.build/connectrpc/gosimple
+    out: api/schema
+    opt:
+      - paths=source_relative
+      - simple
+  - remote: buf.build/community/timostamm-protobuf-ts:v2.11.1
+    out: client/src/lib/schema
+    opt:
+      - long_type_string
+      - force_optimize_code_size
+      - generate_dependencies
+      - keep_enum_prefix
+      - ts_nocheck
+      - eslint_disable
+      - add_pb_suffix
+
+inputs:
+  - directory: .

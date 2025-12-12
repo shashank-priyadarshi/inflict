@@ -1,0 +1,75 @@
+syntax="proto3";
+
+package inflict.v1.api;
+
+import "protos/v1/entities/common.proto";
+import "protos/v1/entities/entity.proto";
+import "protos/v1/entities/family.proto";
+import "protos/v1/entities/member.proto";
+import "protos/v1/entities/wealth.proto";
+
+option go_package="go.ssnk.in/inflict/schema/protos/v1/api;api";
+
+enum EntityT {
+  ENTITY_AMOUNT = 0;
+  ENTITY_MAINTAINANCE = 1;
+  ENTITY_RETURN = 2;
+  ENTITY_WEALTH = 3;
+  ENTITY_WORTH = 4;
+}
+
+message Request {
+  EntityT entity = 1;
+  oneof payload {
+   string id = 2;
+   inflict.v1.entities.Amount amount =3;
+   inflict.v1.entities.Maintainance maintainance = 4;
+   inflict.v1.entities.Return return = 5;
+   inflict.v1.entities.Wealth wealth = 6;
+   inflict.v1.entities.Worth worth = 7;
+  }
+}
+
+message Response {
+	Status status = 1;
+	oneof payload {
+	 string id = 2;
+	 inflict.v1.entities.Amount amount =3;
+	 inflict.v1.entities.Maintainance maintainance = 4;
+	 inflict.v1.entities.Return return = 5;
+	 inflict.v1.entities.Wealth wealth = 6;
+	 inflict.v1.entities.Worth worth = 7;
+	}
+}
+
+message Status {
+	StatusCode code = 1;
+	Error message = 2;
+}
+
+message Error {
+	string message = 1;
+	string description = 2;
+}
+
+enum StatusCode {
+  // Default value. In Protobuf, the 0 value is required as the first element.
+  // This serves as a safety catch for uninitialized fields.
+  UNSPECIFIED = 0;
+
+  OK = 200;
+  CREATED = 201;
+  NO_CONTENT = 204;
+  MOVED_PERMANENTLY = 301;
+  TEMPORARY_REDIRECT = 307;
+  BAD_REQUEST = 400;
+  UNAUTHORIZED = 401;
+  FORBIDDEN = 403;
+  NOT_FOUND = 404;
+  CONFLICT = 409;
+  TOO_MANY_REQUESTS = 429;
+  CLIENT_CLOSED_REQUEST = 499;
+  INTERNAL_SERVER_ERROR = 500;
+  SERVICE_UNAVAILABLE = 503;
+  GATEWAY_TIMEOUT = 504;
+}

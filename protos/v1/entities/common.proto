@@ -1,0 +1,58 @@
+syntax="proto3";
+
+package inflict.v1.entities;
+
+option go_package="go.ssnk.in/inflict/schema/protos/v1/entities;entities";
+
+enum AmountT {
+	Credit = 0;
+	Debit = 1;
+}
+
+// Ideate Fixed, Variable, Recurring & OneTime amounts
+message Amount {
+	string id = 1;
+	AmountT type = 2;
+	string name = 3;
+	string sender = 4;
+	string receiver = 5;
+	int64 value = 6;
+	string currency = 7;
+	bool deleted = 8;
+}
+
+enum RateT {
+	BASIS_POINTS = 0;
+	PERCENTAGE = 1;
+}
+
+message Rate {
+	RateT type = 1;
+	int64 value = 2;
+}
+
+message Maintainance {
+	string id = 1;
+	string type = 2;
+	Amount cost = 3;
+}
+
+message Cost {
+	string id = 1;
+	Amount amount = 2;
+	Maintainance maintainance = 3;
+}
+
+enum AccomodationT {
+	Owned = 0;
+	Leased = 1;
+	Rented = 2;
+	Shared = 3;
+}
+
+message Accomodation {
+	string id = 1;
+	AccomodationT type = 2;
+	Cost cost = 3;
+	string address = 4;
+}
