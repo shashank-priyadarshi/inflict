@@ -5,9 +5,9 @@
 // @ts-nocheck
 import { MessageType } from "@protobuf-ts/runtime";
 import { Duration } from "../../../google/protobuf/duration_pb";
-import { Rate } from "./common_pb";
-import { Maintainance } from "./common_pb";
-import { Amount } from "./common_pb";
+import { Rate } from "./rate_pb";
+import { Maintainance } from "./maintainance_pb";
+import { Amount } from "./amount_pb";
 /**
  * @generated from protobuf message inflict.v1.entities.Worth
  */
@@ -54,9 +54,10 @@ export interface Wealth {
      */
     id: string;
     /**
-     * @generated from protobuf field: inflict.v1.entities.WealthT type = 2
+     * @generated from protobuf field: inflict.v1.entities.Wealth.Type type = 2
      */
-    type: WealthT; // Redundant because Worth is the primary table for any Entity, Member or Family, Used for development purposes    /**
+    type: Wealth_Type;
+    /**
      * @generated from protobuf field: string name = 3
      */
     name: string;
@@ -78,6 +79,41 @@ export interface Wealth {
     maintainance: Maintainance[];
 }
 /**
+ * Redundant because Worth is the primary table for any Entity, Member or Family, Used for development purposes
+ *
+ * @generated from protobuf enum inflict.v1.entities.Wealth.Type
+ */
+export enum Wealth_Type {
+    /**
+     * @generated from protobuf enum value: TYPE_UNSPECIFIED = 0;
+     */
+    TYPE_UNSPECIFIED = 0,
+    /**
+     * @generated from protobuf enum value: TYPE_EARNING = 1;
+     */
+    TYPE_EARNING = 1,
+    /**
+     * @generated from protobuf enum value: TYPE_EXPENSE = 2;
+     */
+    TYPE_EXPENSE = 2,
+    /**
+     * @generated from protobuf enum value: TYPE_LIABILITY = 3;
+     */
+    TYPE_LIABILITY = 3,
+    /**
+     * @generated from protobuf enum value: TYPE_SAVING = 4;
+     */
+    TYPE_SAVING = 4,
+    /**
+     * @generated from protobuf enum value: TYPE_INVESTMENT = 5;
+     */
+    TYPE_INVESTMENT = 5,
+    /**
+     * @generated from protobuf enum value: TYPE_INSURANCE = 6;
+     */
+    TYPE_INSURANCE = 6
+}
+/**
  * @generated from protobuf message inflict.v1.entities.Return
  */
 export interface Return {
@@ -86,46 +122,25 @@ export interface Return {
      */
     id: string;
     /**
-     * @generated from protobuf field: inflict.v1.entities.Rate rate = 2
+     * @generated from protobuf field: string name = 2
+     */
+    name: string;
+    /**
+     * @generated from protobuf field: inflict.v1.entities.Rate rate = 3
      */
     rate?: Rate;
     /**
-     * @generated from protobuf field: google.protobuf.Duration duration = 3
+     * @generated from protobuf field: google.protobuf.Duration duration = 4
      */
     duration?: Duration;
     /**
-     * @generated from protobuf field: inflict.v1.entities.Amount maturity_corpus = 4
+     * @generated from protobuf field: inflict.v1.entities.Amount maturity_corpus = 5
      */
     maturityCorpus?: Amount;
-}
-/**
- * @generated from protobuf enum inflict.v1.entities.WealthT
- */
-export enum WealthT {
     /**
-     * @generated from protobuf enum value: Earning = 0;
+     * @generated from protobuf field: bool deleted = 6
      */
-    Earning = 0,
-    /**
-     * @generated from protobuf enum value: Expense = 1;
-     */
-    Expense = 1,
-    /**
-     * @generated from protobuf enum value: Liability = 2;
-     */
-    Liability = 2,
-    /**
-     * @generated from protobuf enum value: Saving = 3;
-     */
-    Saving = 3,
-    /**
-     * @generated from protobuf enum value: Investment = 4;
-     */
-    Investment = 4,
-    /**
-     * @generated from protobuf enum value: Insurance = 5;
-     */
-    Insurance = 5
+    deleted: boolean;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Worth$Type extends MessageType<Worth> {
@@ -151,7 +166,7 @@ class Wealth$Type extends MessageType<Wealth> {
     constructor() {
         super("inflict.v1.entities.Wealth", [
             { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 2, name: "type", kind: "enum", T: () => ["inflict.v1.entities.WealthT", WealthT] },
+            { no: 2, name: "type", kind: "enum", T: () => ["inflict.v1.entities.Wealth.Type", Wealth_Type] },
             { no: 3, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 4, name: "deleted", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
             { no: 5, name: "value", kind: "message", T: () => Amount },
@@ -169,9 +184,11 @@ class Return$Type extends MessageType<Return> {
     constructor() {
         super("inflict.v1.entities.Return", [
             { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 2, name: "rate", kind: "message", T: () => Rate },
-            { no: 3, name: "duration", kind: "message", T: () => Duration },
-            { no: 4, name: "maturity_corpus", kind: "message", T: () => Amount }
+            { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 3, name: "rate", kind: "message", T: () => Rate },
+            { no: 4, name: "duration", kind: "message", T: () => Duration },
+            { no: 5, name: "maturity_corpus", kind: "message", T: () => Amount },
+            { no: 6, name: "deleted", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
 }

@@ -45,33 +45,29 @@ sql:
           - column: "amounts.receiver"
             go_type: "string"
           - column: "returns.duration"
-            go_type:
-              import: "google.golang.org/protobuf/types/known/durationpb"
-              type: "Duration"
+            go_type: "time.Duration"
           - db_type: "pg_catalog.interval"
-            go_type:
-              import: "google.golang.org/protobuf/types/known/durationpb"
-              type: "Duration"
+            go_type: "time.Duration"
           - db_type: "amount_type"
             go_type:
-              import: "go.ssnk.in/inflict/internal/domain"
-              type: "AmountType"
+              import: "go.ssnk.in/inflict/schema/protos/v1/entities"
+              type: "Amount_Type"
           - db_type: "rate_type"
             go_type:
-              import: "go.ssnk.in/inflict/internal/domain"
-              type: "RateType"
+              import: "go.ssnk.in/inflict/schema/protos/v1/entities"
+              type: "Rate_Type"
           - db_type: "wealth_type"
             go_type:
-              import: "go.ssnk.in/inflict/internal/domain"
-              type: "WealthType"
+              import: "go.ssnk.in/inflict/schema/protos/v1/entities"
+              type: "Wealth_Type"
           - db_type: "member_type"
             go_type:
-              import: "go.ssnk.in/inflict/internal/domain"
-              type: "MemberType"
+              import: "go.ssnk.in/inflict/schema/protos/v1/entities"
+              type: "Member_Type"
           - db_type: "accomodation_type"
             go_type:
-              import: "go.ssnk.in/inflict/internal/domain"
-              type: "AccomodationType"
+              import: "go.ssnk.in/inflict/schema/protos/v1/entities"
+              type: "Accomodation_Type"
         emit_db_tags: true
         emit_prepared_queries: true
         emit_exact_table_names: true

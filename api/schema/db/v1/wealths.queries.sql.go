@@ -9,7 +9,7 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"go.ssnk.in/inflict/internal/domain"
+	"go.ssnk.in/inflict/schema/protos/v1/entities"
 )
 
 const getWealth = `-- name: GetWealth :one
@@ -48,7 +48,7 @@ ORDER BY created_at DESC
 //	SELECT id, worth_id, type, name, value_id, deleted, created_at, updated_at FROM Wealths
 //	WHERE type = $1 AND deleted = FALSE
 //	ORDER BY created_at DESC
-func (q *Queries) GetWealthsByType(ctx context.Context, type_ domain.WealthType) ([]*Wealths, error) {
+func (q *Queries) GetWealthsByType(ctx context.Context, type_ entities.Wealth_Type) ([]*Wealths, error) {
 	rows, err := q.db.Query(ctx, getWealthsByType, type_)
 	if err != nil {
 		return nil, err

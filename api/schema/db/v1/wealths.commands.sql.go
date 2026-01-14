@@ -9,7 +9,7 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"go.ssnk.in/inflict/internal/domain"
+	"go.ssnk.in/inflict/schema/protos/v1/entities"
 )
 
 const createWealth = `-- name: CreateWealth :one
@@ -19,11 +19,11 @@ RETURNING id, worth_id, type, name, value_id, deleted, created_at, updated_at
 `
 
 type CreateWealthParams struct {
-	ID      uuid.UUID         `db:"id" json:"id"`
-	WorthID uuid.UUID         `db:"worth_id" json:"worthId"`
-	Type    domain.WealthType `db:"type" json:"type"`
-	Name    string            `db:"name" json:"name"`
-	ValueID uuid.UUID         `db:"value_id" json:"valueId"`
+	ID      uuid.UUID            `db:"id" json:"id"`
+	WorthID uuid.UUID            `db:"worth_id" json:"worthId"`
+	Type    entities.Wealth_Type `db:"type" json:"type"`
+	Name    string               `db:"name" json:"name"`
+	ValueID uuid.UUID            `db:"value_id" json:"valueId"`
 }
 
 // Wealths CRUD
@@ -81,11 +81,11 @@ RETURNING id, worth_id, type, name, value_id, deleted, created_at, updated_at
 `
 
 type UpdateWealthParams struct {
-	ID      uuid.UUID         `db:"id" json:"id"`
-	WorthID uuid.UUID         `db:"worth_id" json:"worthId"`
-	Type    domain.WealthType `db:"type" json:"type"`
-	Name    string            `db:"name" json:"name"`
-	ValueID uuid.UUID         `db:"value_id" json:"valueId"`
+	ID      uuid.UUID            `db:"id" json:"id"`
+	WorthID uuid.UUID            `db:"worth_id" json:"worthId"`
+	Type    entities.Wealth_Type `db:"type" json:"type"`
+	Name    string               `db:"name" json:"name"`
+	ValueID uuid.UUID            `db:"value_id" json:"valueId"`
 }
 
 // UpdateWealth

@@ -10,8 +10,8 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
-	"go.ssnk.in/inflict/internal/domain"
-	"google.golang.org/protobuf/types/known/durationpb"
+	"go.ssnk.in/inflict/schema/protos/v1/entities"
+	"time"
 )
 
 const createReturn = `-- name: CreateReturn :one
@@ -21,13 +21,13 @@ RETURNING id, wealth_id, name, rate_type, rate_value, duration, maturity_corpus_
 `
 
 type CreateReturnParams struct {
-	ID               uuid.UUID           `db:"id" json:"id"`
-	WealthID         uuid.UUID           `db:"wealth_id" json:"wealthId"`
-	Name             string              `db:"name" json:"name"`
-	RateType         domain.RateType     `db:"rate_type" json:"rateType"`
-	RateValue        pgtype.Numeric      `db:"rate_value" json:"rateValue"`
-	Duration         durationpb.Duration `db:"duration" json:"duration"`
-	MaturityCorpusID uuid.UUID           `db:"maturity_corpus_id" json:"maturityCorpusId"`
+	ID               uuid.UUID          `db:"id" json:"id"`
+	WealthID         uuid.UUID          `db:"wealth_id" json:"wealthId"`
+	Name             string             `db:"name" json:"name"`
+	RateType         entities.Rate_Type `db:"rate_type" json:"rateType"`
+	RateValue        pgtype.Numeric     `db:"rate_value" json:"rateValue"`
+	Duration         time.Duration      `db:"duration" json:"duration"`
+	MaturityCorpusID uuid.UUID          `db:"maturity_corpus_id" json:"maturityCorpusId"`
 }
 
 // Returns CRUD
@@ -91,13 +91,13 @@ RETURNING id, wealth_id, name, rate_type, rate_value, duration, maturity_corpus_
 `
 
 type UpdateReturnParams struct {
-	ID               uuid.UUID           `db:"id" json:"id"`
-	WealthID         uuid.UUID           `db:"wealth_id" json:"wealthId"`
-	Name             string              `db:"name" json:"name"`
-	RateType         domain.RateType     `db:"rate_type" json:"rateType"`
-	RateValue        pgtype.Numeric      `db:"rate_value" json:"rateValue"`
-	Duration         durationpb.Duration `db:"duration" json:"duration"`
-	MaturityCorpusID uuid.UUID           `db:"maturity_corpus_id" json:"maturityCorpusId"`
+	ID               uuid.UUID          `db:"id" json:"id"`
+	WealthID         uuid.UUID          `db:"wealth_id" json:"wealthId"`
+	Name             string             `db:"name" json:"name"`
+	RateType         entities.Rate_Type `db:"rate_type" json:"rateType"`
+	RateValue        pgtype.Numeric     `db:"rate_value" json:"rateValue"`
+	Duration         time.Duration      `db:"duration" json:"duration"`
+	MaturityCorpusID uuid.UUID          `db:"maturity_corpus_id" json:"maturityCorpusId"`
 }
 
 // UpdateReturn

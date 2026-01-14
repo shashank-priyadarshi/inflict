@@ -9,7 +9,7 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"go.ssnk.in/inflict/internal/domain"
+	"go.ssnk.in/inflict/schema/protos/v1/entities"
 )
 
 const createMember = `-- name: CreateMember :one
@@ -22,10 +22,10 @@ RETURNING id, name, type, net_worth_id, deleted, created_at, updated_at
 `
 
 type CreateMemberParams struct {
-	ID         uuid.UUID         `db:"id" json:"id"`
-	Name       string            `db:"name" json:"name"`
-	Type       domain.MemberType `db:"type" json:"type"`
-	NetWorthID uuid.UUID         `db:"net_worth_id" json:"netWorthId"`
+	ID         uuid.UUID            `db:"id" json:"id"`
+	Name       string               `db:"name" json:"name"`
+	Type       entities.Member_Type `db:"type" json:"type"`
+	NetWorthID uuid.UUID            `db:"net_worth_id" json:"netWorthId"`
 }
 
 // CreateMember
@@ -85,10 +85,10 @@ RETURNING id, name, type, net_worth_id, deleted, created_at, updated_at
 `
 
 type UpdateMemberParams struct {
-	ID         uuid.UUID         `db:"id" json:"id"`
-	Name       string            `db:"name" json:"name"`
-	Type       domain.MemberType `db:"type" json:"type"`
-	NetWorthID uuid.UUID         `db:"net_worth_id" json:"netWorthId"`
+	ID         uuid.UUID            `db:"id" json:"id"`
+	Name       string               `db:"name" json:"name"`
+	Type       entities.Member_Type `db:"type" json:"type"`
+	NetWorthID uuid.UUID            `db:"net_worth_id" json:"netWorthId"`
 }
 
 // UpdateMember

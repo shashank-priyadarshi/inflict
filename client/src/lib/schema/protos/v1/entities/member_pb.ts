@@ -5,7 +5,7 @@
 // @ts-nocheck
 import { MessageType } from "@protobuf-ts/runtime";
 import { Worth } from "./wealth_pb";
-import { Accomodation } from "./common_pb";
+import { Accomodation } from "./accomodation_pb";
 /**
  * @generated from protobuf message inflict.v1.entities.Member
  */
@@ -19,9 +19,9 @@ export interface Member {
      */
     name: string;
     /**
-     * @generated from protobuf field: inflict.v1.entities.MemberT type = 3
+     * @generated from protobuf field: inflict.v1.entities.Member.Type type = 3
      */
-    type: MemberT;
+    type: Member_Type;
     /**
      * @generated from protobuf field: repeated inflict.v1.entities.Accomodation accomodations = 4
      */
@@ -32,17 +32,21 @@ export interface Member {
     netWorth?: Worth;
 }
 /**
- * @generated from protobuf enum inflict.v1.entities.MemberT
+ * @generated from protobuf enum inflict.v1.entities.Member.Type
  */
-export enum MemberT {
+export enum Member_Type {
     /**
-     * @generated from protobuf enum value: Earner = 0;
+     * @generated from protobuf enum value: TYPE_UNSPECIFIED = 0;
      */
-    Earner = 0,
+    TYPE_UNSPECIFIED = 0,
     /**
-     * @generated from protobuf enum value: Dependent = 1;
+     * @generated from protobuf enum value: TYPE_EARNER = 1;
      */
-    Dependent = 1
+    TYPE_EARNER = 1,
+    /**
+     * @generated from protobuf enum value: TYPE_DEPENDENT = 2;
+     */
+    TYPE_DEPENDENT = 2
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Member$Type extends MessageType<Member> {
@@ -50,7 +54,7 @@ class Member$Type extends MessageType<Member> {
         super("inflict.v1.entities.Member", [
             { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 3, name: "type", kind: "enum", T: () => ["inflict.v1.entities.MemberT", MemberT] },
+            { no: 3, name: "type", kind: "enum", T: () => ["inflict.v1.entities.Member.Type", Member_Type] },
             { no: 4, name: "accomodations", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => Accomodation },
             { no: 5, name: "net_worth", kind: "message", T: () => Worth }
         ]);

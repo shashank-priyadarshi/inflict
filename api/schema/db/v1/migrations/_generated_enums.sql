@@ -1,43 +1,49 @@
 CREATE TYPE accomodation_type AS ENUM (
-    'Owned',
-    'Leased',
-    'Rented',
-    'Shared'
+    'ACCOMODATION_T_UNSPECIFIED',
+    'ACCOMODATION_T_OWNED',
+    'ACCOMODATION_T_LEASED',
+    'ACCOMODATION_T_RENTED',
+    'ACCOMODATION_T_SHARED'
 );
 
 CREATE TYPE amount_type AS ENUM (
-    'Credit',
-    'Debit'
+    'AMOUNT_T_UNSPECIFIED',
+    'AMOUNT_T_CREDIT',
+    'AMOUNT_T_DEBIT'
 );
 
 CREATE TYPE entity_type AS ENUM (
-    'ENTITY_AMOUNT',
-    'ENTITY_MAINTAINANCE',
-    'ENTITY_RETURN',
-    'ENTITY_WEALTH',
-    'ENTITY_WORTH'
+    'ENTITY_T_AMOUNT',
+    'ENTITY_T_MAINTAINANCE',
+    'ENTITY_T_RETURN',
+    'ENTITY_T_WEALTH',
+    'ENTITY_T_WORTH'
 );
 
 CREATE TYPE family_type AS ENUM (
-    'Nuclear',
-    'Joint'
+    'FAMILY_T_UNSPECIFIED',
+    'FAMILY_T_NUCLEAR',
+    'FAMILY_T_JOINT'
 );
 
 CREATE TYPE member_type AS ENUM (
-    'Earner',
-    'Dependent'
+    'MEMBER_T_UNSPECIFIED',
+    'MEMBER_T_EARNER',
+    'MEMBER_T_DEPENDENT'
 );
 
 CREATE TYPE rate_type AS ENUM (
-    'BASIS_POINTS',
-    'PERCENTAGE'
+    'RATE_T_UNSPECIFIED',
+    'RATE_T_BASIS_POINTS',
+    'RATE_T_PERCENTAGE'
 );
 
 CREATE TYPE wealth_type AS ENUM (
-    'Earning',
-    'Expense',
-    'Liability',
-    'Saving',
-    'Investment',
-    'Insurance'
+    'WEALTH_T_UNSPECIFIED',
+    'WEALTH_T_EARNING',
+    'WEALTH_T_EXPENSE',
+    'WEALTH_T_LIABILITY',
+    'WEALTH_T_SAVING',
+    'WEALTH_T_INVESTMENT',
+    'WEALTH_T_INSURANCE'
 );

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package inflict.v1.entities;
+
+import "protos/v1/entities/amount.proto";
+
+option go_package = "go.ssnk.in/inflict/schema/protos/v1/entities;entities";
+
+message Maintainance {
+  string id = 1;
+  string type = 2;
+  string name = 3;
+  Amount cost = 4;
+  bool deleted = 5;
+}

@@ -10,7 +10,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
-	"go.ssnk.in/inflict/internal/domain"
+	"go.ssnk.in/inflict/schema/protos/v1/entities"
 )
 
 const createAccomodation = `-- name: CreateAccomodation :one
@@ -22,11 +22,11 @@ INSERT INTO Accomodations (
 `
 
 type CreateAccomodationParams struct {
-	ID       uuid.UUID               `db:"id" json:"id"`
-	MemberID uuid.UUID               `db:"member_id" json:"memberId"`
-	Type     domain.AccomodationType `db:"type" json:"type"`
-	Address  pgtype.Text             `db:"address" json:"address"`
-	CostID   uuid.UUID               `db:"cost_id" json:"costId"`
+	ID       uuid.UUID                  `db:"id" json:"id"`
+	MemberID uuid.UUID                  `db:"member_id" json:"memberId"`
+	Type     entities.Accomodation_Type `db:"type" json:"type"`
+	Address  pgtype.Text                `db:"address" json:"address"`
+	CostID   uuid.UUID                  `db:"cost_id" json:"costId"`
 }
 
 // CreateAccomodation

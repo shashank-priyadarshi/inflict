@@ -5,7 +5,7 @@
 // @ts-nocheck
 import { MessageType } from "@protobuf-ts/runtime";
 import { Worth } from "./wealth_pb";
-import { Accomodation } from "./common_pb";
+import { Accomodation } from "./accomodation_pb";
 import { Member } from "./member_pb";
 /**
  * @generated from protobuf message inflict.v1.entities.Family
@@ -20,9 +20,9 @@ export interface Family {
      */
     name: string;
     /**
-     * @generated from protobuf field: inflict.v1.entities.FamilyT type = 3
+     * @generated from protobuf field: inflict.v1.entities.Family.Type type = 3
      */
-    type: FamilyT;
+    type: Family_Type;
     /**
      * @generated from protobuf field: repeated inflict.v1.entities.Member members = 4
      */
@@ -37,17 +37,21 @@ export interface Family {
     netWorth?: Worth;
 }
 /**
- * @generated from protobuf enum inflict.v1.entities.FamilyT
+ * @generated from protobuf enum inflict.v1.entities.Family.Type
  */
-export enum FamilyT {
+export enum Family_Type {
     /**
-     * @generated from protobuf enum value: Nuclear = 0;
+     * @generated from protobuf enum value: TYPE_UNSPECIFIED = 0;
      */
-    Nuclear = 0,
+    TYPE_UNSPECIFIED = 0,
     /**
-     * @generated from protobuf enum value: Joint = 1;
+     * @generated from protobuf enum value: TYPE_NUCLEAR = 1;
      */
-    Joint = 1
+    TYPE_NUCLEAR = 1,
+    /**
+     * @generated from protobuf enum value: TYPE_JOINT = 2;
+     */
+    TYPE_JOINT = 2
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Family$Type extends MessageType<Family> {
@@ -55,7 +59,7 @@ class Family$Type extends MessageType<Family> {
         super("inflict.v1.entities.Family", [
             { no: 1, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 2, name: "name", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
-            { no: 3, name: "type", kind: "enum", T: () => ["inflict.v1.entities.FamilyT", FamilyT] },
+            { no: 3, name: "type", kind: "enum", T: () => ["inflict.v1.entities.Family.Type", Family_Type] },
             { no: 4, name: "members", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => Member },
             { no: 5, name: "accomodations", kind: "message", repeat: 2 /*RepeatType.UNPACKED*/, T: () => Accomodation },
             { no: 6, name: "net_worth", kind: "message", T: () => Worth }

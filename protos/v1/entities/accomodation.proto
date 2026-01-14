@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package inflict.v1.entities;
+
+import "protos/v1/entities/cost.proto";
+
+option go_package = "go.ssnk.in/inflict/schema/protos/v1/entities;entities";
+
+message Accomodation {
+  string id = 1;
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    TYPE_OWNED = 1;
+    TYPE_LEASED = 2;
+    TYPE_RENTED = 3;
+    TYPE_SHARED = 4;
+  }
+  Type type = 2;
+  Cost cost = 3;
+  string address = 4;
+}

@@ -10,7 +10,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
-	"go.ssnk.in/inflict/internal/domain"
+	"go.ssnk.in/inflict/schema/protos/v1/entities"
 )
 
 const createAmount = `-- name: CreateAmount :one
@@ -20,13 +20,13 @@ RETURNING id, type, name, sender, receiver, value, currency, deleted, created_at
 `
 
 type CreateAmountParams struct {
-	ID       uuid.UUID         `db:"id" json:"id"`
-	Type     domain.AmountType `db:"type" json:"type"`
-	Name     string            `db:"name" json:"name"`
-	Sender   string            `db:"sender" json:"sender"`
-	Receiver string            `db:"receiver" json:"receiver"`
-	Value    pgtype.Numeric    `db:"value" json:"value"`
-	Currency string            `db:"currency" json:"currency"`
+	ID       uuid.UUID            `db:"id" json:"id"`
+	Type     entities.Amount_Type `db:"type" json:"type"`
+	Name     string               `db:"name" json:"name"`
+	Sender   string               `db:"sender" json:"sender"`
+	Receiver string               `db:"receiver" json:"receiver"`
+	Value    pgtype.Numeric       `db:"value" json:"value"`
+	Currency string               `db:"currency" json:"currency"`
 }
 
 // Amount CRUD
@@ -90,13 +90,13 @@ RETURNING id, type, name, sender, receiver, value, currency, deleted, created_at
 `
 
 type UpdateAmountParams struct {
-	ID       uuid.UUID         `db:"id" json:"id"`
-	Type     domain.AmountType `db:"type" json:"type"`
-	Name     string            `db:"name" json:"name"`
-	Sender   string            `db:"sender" json:"sender"`
-	Receiver string            `db:"receiver" json:"receiver"`
-	Value    pgtype.Numeric    `db:"value" json:"value"`
-	Currency string            `db:"currency" json:"currency"`
+	ID       uuid.UUID            `db:"id" json:"id"`
+	Type     entities.Amount_Type `db:"type" json:"type"`
+	Name     string               `db:"name" json:"name"`
+	Sender   string               `db:"sender" json:"sender"`
+	Receiver string               `db:"receiver" json:"receiver"`
+	Value    pgtype.Numeric       `db:"value" json:"value"`
+	Currency string               `db:"currency" json:"currency"`
 }
 
 // UpdateAmount

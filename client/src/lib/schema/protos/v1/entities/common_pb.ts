@@ -116,47 +116,59 @@ export interface Accomodation {
  */
 export enum AmountT {
     /**
-     * @generated from protobuf enum value: Credit = 0;
+     * @generated from protobuf enum value: AMOUNT_T_UNSPECIFIED = 0;
      */
-    Credit = 0,
+    AMOUNT_T_UNSPECIFIED = 0,
     /**
-     * @generated from protobuf enum value: Debit = 1;
+     * @generated from protobuf enum value: AMOUNT_T_CREDIT = 1;
      */
-    Debit = 1
+    AMOUNT_T_CREDIT = 1,
+    /**
+     * @generated from protobuf enum value: AMOUNT_T_DEBIT = 2;
+     */
+    AMOUNT_T_DEBIT = 2
 }
 /**
  * @generated from protobuf enum inflict.v1.entities.RateT
  */
 export enum RateT {
     /**
-     * @generated from protobuf enum value: BASIS_POINTS = 0;
+     * @generated from protobuf enum value: RATE_T_UNSPECIFIED = 0;
      */
-    BASIS_POINTS = 0,
+    RATE_T_UNSPECIFIED = 0,
     /**
-     * @generated from protobuf enum value: PERCENTAGE = 1;
+     * @generated from protobuf enum value: RATE_T_BASIS_POINTS = 1;
      */
-    PERCENTAGE = 1
+    RATE_T_BASIS_POINTS = 1,
+    /**
+     * @generated from protobuf enum value: RATE_T_PERCENTAGE = 2;
+     */
+    RATE_T_PERCENTAGE = 2
 }
 /**
  * @generated from protobuf enum inflict.v1.entities.AccomodationT
  */
 export enum AccomodationT {
     /**
-     * @generated from protobuf enum value: Owned = 0;
+     * @generated from protobuf enum value: ACCOMODATION_T_UNSPECIFIED = 0;
      */
-    Owned = 0,
+    ACCOMODATION_T_UNSPECIFIED = 0,
     /**
-     * @generated from protobuf enum value: Leased = 1;
+     * @generated from protobuf enum value: ACCOMODATION_T_OWNED = 1;
      */
-    Leased = 1,
+    ACCOMODATION_T_OWNED = 1,
     /**
-     * @generated from protobuf enum value: Rented = 2;
+     * @generated from protobuf enum value: ACCOMODATION_T_LEASED = 2;
      */
-    Rented = 2,
+    ACCOMODATION_T_LEASED = 2,
     /**
-     * @generated from protobuf enum value: Shared = 3;
+     * @generated from protobuf enum value: ACCOMODATION_T_RENTED = 3;
      */
-    Shared = 3
+    ACCOMODATION_T_RENTED = 3,
+    /**
+     * @generated from protobuf enum value: ACCOMODATION_T_SHARED = 4;
+     */
+    ACCOMODATION_T_SHARED = 4
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class Amount$Type extends MessageType<Amount> {

@@ -11,17 +11,17 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
-	"go.ssnk.in/inflict/internal/domain"
-	"google.golang.org/protobuf/types/known/durationpb"
+	"go.ssnk.in/inflict/schema/protos/v1/entities"
 )
 
 type AccomodationType string
 
 const (
-	AccomodationTypeOwned  AccomodationType = "Owned"
-	AccomodationTypeLeased AccomodationType = "Leased"
-	AccomodationTypeRented AccomodationType = "Rented"
-	AccomodationTypeShared AccomodationType = "Shared"
+	AccomodationTypeACCOMODATIONTUNSPECIFIED AccomodationType = "ACCOMODATION_T_UNSPECIFIED"
+	AccomodationTypeACCOMODATIONTOWNED       AccomodationType = "ACCOMODATION_T_OWNED"
+	AccomodationTypeACCOMODATIONTLEASED      AccomodationType = "ACCOMODATION_T_LEASED"
+	AccomodationTypeACCOMODATIONTRENTED      AccomodationType = "ACCOMODATION_T_RENTED"
+	AccomodationTypeACCOMODATIONTSHARED      AccomodationType = "ACCOMODATION_T_SHARED"
 )
 
 func (e *AccomodationType) Scan(src interface{}) error {
@@ -61,10 +61,11 @@ func (ns NullAccomodationType) Value() (driver.Value, error) {
 
 func (e AccomodationType) Valid() bool {
 	switch e {
-	case AccomodationTypeOwned,
-		AccomodationTypeLeased,
-		AccomodationTypeRented,
-		AccomodationTypeShared:
+	case AccomodationTypeACCOMODATIONTUNSPECIFIED,
+		AccomodationTypeACCOMODATIONTOWNED,
+		AccomodationTypeACCOMODATIONTLEASED,
+		AccomodationTypeACCOMODATIONTRENTED,
+		AccomodationTypeACCOMODATIONTSHARED:
 		return true
 	}
 	return false
@@ -72,35 +73,36 @@ func (e AccomodationType) Valid() bool {
 
 func AllAccomodationTypeValues() []AccomodationType {
 	return []AccomodationType{
-		AccomodationTypeOwned,
-		AccomodationTypeLeased,
-		AccomodationTypeRented,
-		AccomodationTypeShared,
+		AccomodationTypeACCOMODATIONTUNSPECIFIED,
+		AccomodationTypeACCOMODATIONTOWNED,
+		AccomodationTypeACCOMODATIONTLEASED,
+		AccomodationTypeACCOMODATIONTRENTED,
+		AccomodationTypeACCOMODATIONTSHARED,
 	}
 }
 
 type Accomodations struct {
-	ID        uuid.UUID               `db:"id" json:"id"`
-	MemberID  uuid.UUID               `db:"member_id" json:"memberId"`
-	Type      domain.AccomodationType `db:"type" json:"type"`
-	Address   pgtype.Text             `db:"address" json:"address"`
-	CostID    uuid.UUID               `db:"cost_id" json:"costId"`
-	Deleted   bool                    `db:"deleted" json:"deleted"`
-	CreatedAt time.Time               `db:"created_at" json:"createdAt"`
-	UpdatedAt time.Time               `db:"updated_at" json:"updatedAt"`
+	ID        uuid.UUID                  `db:"id" json:"id"`
+	MemberID  uuid.UUID                  `db:"member_id" json:"memberId"`
+	Type      entities.Accomodation_Type `db:"type" json:"type"`
+	Address   pgtype.Text                `db:"address" json:"address"`
+	CostID    uuid.UUID                  `db:"cost_id" json:"costId"`
+	Deleted   bool                       `db:"deleted" json:"deleted"`
+	CreatedAt time.Time                  `db:"created_at" json:"createdAt"`
+	UpdatedAt time.Time                  `db:"updated_at" json:"updatedAt"`
 }
 
 type Amounts struct {
-	ID        uuid.UUID         `db:"id" json:"id"`
-	Type      domain.AmountType `db:"type" json:"type"`
-	Name      string            `db:"name" json:"name"`
-	Sender    string            `db:"sender" json:"sender"`
-	Receiver  string            `db:"receiver" json:"receiver"`
-	Value     pgtype.Numeric    `db:"value" json:"value"`
-	Currency  string            `db:"currency" json:"currency"`
-	Deleted   bool              `db:"deleted" json:"deleted"`
-	CreatedAt time.Time         `db:"created_at" json:"createdAt"`
-	UpdatedAt time.Time         `db:"updated_at" json:"updatedAt"`
+	ID        uuid.UUID            `db:"id" json:"id"`
+	Type      entities.Amount_Type `db:"type" json:"type"`
+	Name      string               `db:"name" json:"name"`
+	Sender    string               `db:"sender" json:"sender"`
+	Receiver  string               `db:"receiver" json:"receiver"`
+	Value     pgtype.Numeric       `db:"value" json:"value"`
+	Currency  string               `db:"currency" json:"currency"`
+	Deleted   bool                 `db:"deleted" json:"deleted"`
+	CreatedAt time.Time            `db:"created_at" json:"createdAt"`
+	UpdatedAt time.Time            `db:"updated_at" json:"updatedAt"`
 }
 
 type Maintainances struct {
@@ -115,37 +117,37 @@ type Maintainances struct {
 }
 
 type Members struct {
-	ID         uuid.UUID         `db:"id" json:"id"`
-	Name       string            `db:"name" json:"name"`
-	Type       domain.MemberType `db:"type" json:"type"`
-	NetWorthID uuid.UUID         `db:"net_worth_id" json:"netWorthId"`
-	Deleted    bool              `db:"deleted" json:"deleted"`
-	CreatedAt  time.Time         `db:"created_at" json:"createdAt"`
-	UpdatedAt  time.Time         `db:"updated_at" json:"updatedAt"`
+	ID         uuid.UUID            `db:"id" json:"id"`
+	Name       string               `db:"name" json:"name"`
+	Type       entities.Member_Type `db:"type" json:"type"`
+	NetWorthID uuid.UUID            `db:"net_worth_id" json:"netWorthId"`
+	Deleted    bool                 `db:"deleted" json:"deleted"`
+	CreatedAt  time.Time            `db:"created_at" json:"createdAt"`
+	UpdatedAt  time.Time            `db:"updated_at" json:"updatedAt"`
 }
 
 type Returns struct {
-	ID               uuid.UUID           `db:"id" json:"id"`
-	WealthID         uuid.UUID           `db:"wealth_id" json:"wealthId"`
-	Name             string              `db:"name" json:"name"`
-	RateType         domain.RateType     `db:"rate_type" json:"rateType"`
-	RateValue        pgtype.Numeric      `db:"rate_value" json:"rateValue"`
-	Duration         durationpb.Duration `db:"duration" json:"duration"`
-	MaturityCorpusID uuid.UUID           `db:"maturity_corpus_id" json:"maturityCorpusId"`
-	Deleted          bool                `db:"deleted" json:"deleted"`
-	CreatedAt        time.Time           `db:"created_at" json:"createdAt"`
-	UpdatedAt        time.Time           `db:"updated_at" json:"updatedAt"`
+	ID               uuid.UUID          `db:"id" json:"id"`
+	WealthID         uuid.UUID          `db:"wealth_id" json:"wealthId"`
+	Name             string             `db:"name" json:"name"`
+	RateType         entities.Rate_Type `db:"rate_type" json:"rateType"`
+	RateValue        pgtype.Numeric     `db:"rate_value" json:"rateValue"`
+	Duration         time.Duration      `db:"duration" json:"duration"`
+	MaturityCorpusID uuid.UUID          `db:"maturity_corpus_id" json:"maturityCorpusId"`
+	Deleted          bool               `db:"deleted" json:"deleted"`
+	CreatedAt        time.Time          `db:"created_at" json:"createdAt"`
+	UpdatedAt        time.Time          `db:"updated_at" json:"updatedAt"`
 }
 
 type Wealths struct {
-	ID        uuid.UUID         `db:"id" json:"id"`
-	WorthID   uuid.UUID         `db:"worth_id" json:"worthId"`
-	Type      domain.WealthType `db:"type" json:"type"`
-	Name      string            `db:"name" json:"name"`
-	ValueID   uuid.UUID         `db:"value_id" json:"valueId"`
-	Deleted   bool              `db:"deleted" json:"deleted"`
-	CreatedAt time.Time         `db:"created_at" json:"createdAt"`
-	UpdatedAt time.Time         `db:"updated_at" json:"updatedAt"`
+	ID        uuid.UUID            `db:"id" json:"id"`
+	WorthID   uuid.UUID            `db:"worth_id" json:"worthId"`
+	Type      entities.Wealth_Type `db:"type" json:"type"`
+	Name      string               `db:"name" json:"name"`
+	ValueID   uuid.UUID            `db:"value_id" json:"valueId"`
+	Deleted   bool                 `db:"deleted" json:"deleted"`
+	CreatedAt time.Time            `db:"created_at" json:"createdAt"`
+	UpdatedAt time.Time            `db:"updated_at" json:"updatedAt"`
 }
 
 type Worths struct {

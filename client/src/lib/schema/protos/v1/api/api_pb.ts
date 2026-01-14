@@ -7,26 +7,24 @@ import { MessageType } from "@protobuf-ts/runtime";
 import { Worth } from "../entities/wealth_pb";
 import { Wealth } from "../entities/wealth_pb";
 import { Return } from "../entities/wealth_pb";
-import { Maintainance } from "../entities/common_pb";
-import { Amount } from "../entities/common_pb";
+import { Maintainance } from "../entities/maintainance_pb";
+import { Amount } from "../entities/amount_pb";
 /**
  * @generated from protobuf message inflict.v1.api.Request
  */
 export interface Request {
     /**
-     * @generated from protobuf field: inflict.v1.api.EntityT entity = 1
+     * @generated from protobuf field: inflict.v1.api.Request.Type entity = 1
      */
-    entity: EntityT;
+    entity: Request_Type;
+    /**
+     * @generated from protobuf field: string id = 2
+     */
+    id: string;
     /**
      * @generated from protobuf oneof: payload
      */
     payload: {
-        oneofKind: "id";
-        /**
-         * @generated from protobuf field: string id = 2
-         */
-        id: string;
-    } | {
         oneofKind: "amount";
         /**
          * @generated from protobuf field: inflict.v1.entities.Amount amount = 3
@@ -61,6 +59,35 @@ export interface Request {
     };
 }
 /**
+ * @generated from protobuf enum inflict.v1.api.Request.Type
+ */
+export enum Request_Type {
+    /**
+     * @generated from protobuf enum value: TYPE_UNSPECIFIED = 0;
+     */
+    TYPE_UNSPECIFIED = 0,
+    /**
+     * @generated from protobuf enum value: TYPE_AMOUNT = 1;
+     */
+    TYPE_AMOUNT = 1,
+    /**
+     * @generated from protobuf enum value: TYPE_MAINTAINANCE = 2;
+     */
+    TYPE_MAINTAINANCE = 2,
+    /**
+     * @generated from protobuf enum value: TYPE_RETURN = 3;
+     */
+    TYPE_RETURN = 3,
+    /**
+     * @generated from protobuf enum value: TYPE_WEALTH = 4;
+     */
+    TYPE_WEALTH = 4,
+    /**
+     * @generated from protobuf enum value: TYPE_WORTH = 5;
+     */
+    TYPE_WORTH = 5
+}
+/**
  * @generated from protobuf message inflict.v1.api.Response
  */
 export interface Response {
@@ -69,15 +96,13 @@ export interface Response {
      */
     status?: Status;
     /**
+     * @generated from protobuf field: string id = 2
+     */
+    id: string;
+    /**
      * @generated from protobuf oneof: payload
      */
     payload: {
-        oneofKind: "id";
-        /**
-         * @generated from protobuf field: string id = 2
-         */
-        id: string;
-    } | {
         oneofKind: "amount";
         /**
          * @generated from protobuf field: inflict.v1.entities.Amount amount = 3
@@ -116,13 +141,82 @@ export interface Response {
  */
 export interface Status {
     /**
-     * @generated from protobuf field: inflict.v1.api.StatusCode code = 1
+     * @generated from protobuf field: inflict.v1.api.Status.Code code = 1
      */
-    code: StatusCode;
+    code: Status_Code;
     /**
      * @generated from protobuf field: inflict.v1.api.Error message = 2
      */
     message?: Error;
+}
+/**
+ * @generated from protobuf enum inflict.v1.api.Status.Code
+ */
+export enum Status_Code {
+    /**
+     * @generated from protobuf enum value: CODE_UNSPECIFIED = 0;
+     */
+    CODE_UNSPECIFIED = 0,
+    /**
+     * @generated from protobuf enum value: CODE_OK = 200;
+     */
+    CODE_OK = 200,
+    /**
+     * @generated from protobuf enum value: CODE_CREATED = 201;
+     */
+    CODE_CREATED = 201,
+    /**
+     * @generated from protobuf enum value: CODE_NO_CONTENT = 204;
+     */
+    CODE_NO_CONTENT = 204,
+    /**
+     * @generated from protobuf enum value: CODE_MOVED_PERMANENTLY = 301;
+     */
+    CODE_MOVED_PERMANENTLY = 301,
+    /**
+     * @generated from protobuf enum value: CODE_TEMPORARY_REDIRECT = 307;
+     */
+    CODE_TEMPORARY_REDIRECT = 307,
+    /**
+     * @generated from protobuf enum value: CODE_BAD_REQUEST = 400;
+     */
+    CODE_BAD_REQUEST = 400,
+    /**
+     * @generated from protobuf enum value: CODE_UNAUTHORIZED = 401;
+     */
+    CODE_UNAUTHORIZED = 401,
+    /**
+     * @generated from protobuf enum value: CODE_FORBIDDEN = 403;
+     */
+    CODE_FORBIDDEN = 403,
+    /**
+     * @generated from protobuf enum value: CODE_NOT_FOUND = 404;
+     */
+    CODE_NOT_FOUND = 404,
+    /**
+     * @generated from protobuf enum value: CODE_CONFLICT = 409;
+     */
+    CODE_CONFLICT = 409,
+    /**
+     * @generated from protobuf enum value: CODE_TOO_MANY_REQUESTS = 429;
+     */
+    CODE_TOO_MANY_REQUESTS = 429,
+    /**
+     * @generated from protobuf enum value: CODE_CLIENT_CLOSED_REQUEST = 499;
+     */
+    CODE_CLIENT_CLOSED_REQUEST = 499,
+    /**
+     * @generated from protobuf enum value: CODE_INTERNAL_SERVER_ERROR = 500;
+     */
+    CODE_INTERNAL_SERVER_ERROR = 500,
+    /**
+     * @generated from protobuf enum value: CODE_SERVICE_UNAVAILABLE = 503;
+     */
+    CODE_SERVICE_UNAVAILABLE = 503,
+    /**
+     * @generated from protobuf enum value: CODE_GATEWAY_TIMEOUT = 504;
+     */
+    CODE_GATEWAY_TIMEOUT = 504
 }
 /**
  * @generated from protobuf message inflict.v1.api.Error
@@ -137,109 +231,12 @@ export interface Error {
      */
     description: string;
 }
-/**
- * @generated from protobuf enum inflict.v1.api.EntityT
- */
-export enum EntityT {
-    /**
-     * @generated from protobuf enum value: ENTITY_AMOUNT = 0;
-     */
-    ENTITY_AMOUNT = 0,
-    /**
-     * @generated from protobuf enum value: ENTITY_MAINTAINANCE = 1;
-     */
-    ENTITY_MAINTAINANCE = 1,
-    /**
-     * @generated from protobuf enum value: ENTITY_RETURN = 2;
-     */
-    ENTITY_RETURN = 2,
-    /**
-     * @generated from protobuf enum value: ENTITY_WEALTH = 3;
-     */
-    ENTITY_WEALTH = 3,
-    /**
-     * @generated from protobuf enum value: ENTITY_WORTH = 4;
-     */
-    ENTITY_WORTH = 4
-}
-/**
- * @generated from protobuf enum inflict.v1.api.StatusCode
- */
-export enum StatusCode {
-    /**
-     * Default value. In Protobuf, the 0 value is required as the first element.
-     * This serves as a safety catch for uninitialized fields.
-     *
-     * @generated from protobuf enum value: UNSPECIFIED = 0;
-     */
-    UNSPECIFIED = 0,
-    /**
-     * @generated from protobuf enum value: OK = 200;
-     */
-    OK = 200,
-    /**
-     * @generated from protobuf enum value: CREATED = 201;
-     */
-    CREATED = 201,
-    /**
-     * @generated from protobuf enum value: NO_CONTENT = 204;
-     */
-    NO_CONTENT = 204,
-    /**
-     * @generated from protobuf enum value: MOVED_PERMANENTLY = 301;
-     */
-    MOVED_PERMANENTLY = 301,
-    /**
-     * @generated from protobuf enum value: TEMPORARY_REDIRECT = 307;
-     */
-    TEMPORARY_REDIRECT = 307,
-    /**
-     * @generated from protobuf enum value: BAD_REQUEST = 400;
-     */
-    BAD_REQUEST = 400,
-    /**
-     * @generated from protobuf enum value: UNAUTHORIZED = 401;
-     */
-    UNAUTHORIZED = 401,
-    /**
-     * @generated from protobuf enum value: FORBIDDEN = 403;
-     */
-    FORBIDDEN = 403,
-    /**
-     * @generated from protobuf enum value: NOT_FOUND = 404;
-     */
-    NOT_FOUND = 404,
-    /**
-     * @generated from protobuf enum value: CONFLICT = 409;
-     */
-    CONFLICT = 409,
-    /**
-     * @generated from protobuf enum value: TOO_MANY_REQUESTS = 429;
-     */
-    TOO_MANY_REQUESTS = 429,
-    /**
-     * @generated from protobuf enum value: CLIENT_CLOSED_REQUEST = 499;
-     */
-    CLIENT_CLOSED_REQUEST = 499,
-    /**
-     * @generated from protobuf enum value: INTERNAL_SERVER_ERROR = 500;
-     */
-    INTERNAL_SERVER_ERROR = 500,
-    /**
-     * @generated from protobuf enum value: SERVICE_UNAVAILABLE = 503;
-     */
-    SERVICE_UNAVAILABLE = 503,
-    /**
-     * @generated from protobuf enum value: GATEWAY_TIMEOUT = 504;
-     */
-    GATEWAY_TIMEOUT = 504
-}
 // @generated message type with reflection information, may provide speed optimized methods
 class Request$Type extends MessageType<Request> {
     constructor() {
         super("inflict.v1.api.Request", [
-            { no: 1, name: "entity", kind: "enum", T: () => ["inflict.v1.api.EntityT", EntityT] },
-            { no: 2, name: "id", kind: "scalar", oneof: "payload", T: 9 /*ScalarType.STRING*/ },
+            { no: 1, name: "entity", kind: "enum", T: () => ["inflict.v1.api.Request.Type", Request_Type] },
+            { no: 2, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "amount", kind: "message", oneof: "payload", T: () => Amount },
             { no: 4, name: "maintainance", kind: "message", oneof: "payload", T: () => Maintainance },
             { no: 5, name: "return", kind: "message", oneof: "payload", T: () => Return },
@@ -257,7 +254,7 @@ class Response$Type extends MessageType<Response> {
     constructor() {
         super("inflict.v1.api.Response", [
             { no: 1, name: "status", kind: "message", T: () => Status },
-            { no: 2, name: "id", kind: "scalar", oneof: "payload", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "id", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "amount", kind: "message", oneof: "payload", T: () => Amount },
             { no: 4, name: "maintainance", kind: "message", oneof: "payload", T: () => Maintainance },
             { no: 5, name: "return", kind: "message", oneof: "payload", T: () => Return },
@@ -274,7 +271,7 @@ export const Response = new Response$Type();
 class Status$Type extends MessageType<Status> {
     constructor() {
         super("inflict.v1.api.Status", [
-            { no: 1, name: "code", kind: "enum", T: () => ["inflict.v1.api.StatusCode", StatusCode] },
+            { no: 1, name: "code", kind: "enum", T: () => ["inflict.v1.api.Status.Code", Status_Code] },
             { no: 2, name: "message", kind: "message", T: () => Error }
         ]);
     }

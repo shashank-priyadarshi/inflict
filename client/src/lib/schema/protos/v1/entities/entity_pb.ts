@@ -7,7 +7,7 @@ import { MessageType } from "@protobuf-ts/runtime";
 import { Worth } from "./wealth_pb";
 import { Family } from "./family_pb";
 import { Member } from "./member_pb";
-import { Accomodation } from "./common_pb";
+import { Accomodation } from "./accomodation_pb";
 /**
  * @generated from protobuf message inflict.v1.entities.Entity
  */

@@ -1,23 +1,23 @@
-syntax="proto3";
+syntax = "proto3";
 
 package inflict.v1.entities;
 
-import "protos/v1/entities/common.proto";
+import "protos/v1/entities/accomodation.proto";
 import "protos/v1/entities/member.proto";
 import "protos/v1/entities/wealth.proto";
 
-option go_package="go.ssnk.in/inflict/schema/protos/v1/entities;entities";
-
-enum FamilyT {
-	Nuclear = 0;
-	Joint = 1;
-}
+option go_package = "go.ssnk.in/inflict/schema/protos/v1/entities;entities";
 
 message Family {
-	string id = 1;
-	string name = 2;
-	FamilyT type = 3;
-	repeated Member members = 4;
-	repeated Accomodation accomodations = 5;
-	Worth net_worth = 6;
+  string id = 1;
+  string name = 2;
+  enum Type {
+    TYPE_UNSPECIFIED = 0;
+    TYPE_NUCLEAR = 1;
+    TYPE_JOINT = 2;
+  }
+  Type type = 3;
+  repeated Member members = 4;
+  repeated Accomodation accomodations = 5;
+  Worth net_worth = 6;
 }
