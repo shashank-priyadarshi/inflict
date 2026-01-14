@@ -34,3 +34,6 @@ go.work
 # Project binaries
 inflict
 inflict.exe
+
+# Temporary files & caches
+*cache*
