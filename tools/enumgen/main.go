@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"flag"
 	"fmt"
+	"log"
 	"os"
 	"sort"
 	"strings"
@@ -58,7 +59,8 @@ func main() {
 	}
 
 	if len(enums) == 0 {
-		exitErr(fmt.Errorf("no target enums found"))
+		log.Println("no target enums found")
+		return
 	}
 
 	// Sort enums by name to ensure deterministic output
