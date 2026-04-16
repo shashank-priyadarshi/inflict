@@ -6,8 +6,8 @@ replace go.ssnk.in/gormon => ../../meta
 
 require (
 	github.com/google/uuid v1.6.0
-	github.com/jackc/pgx/v5 v5.7.6
-	github.com/stretchr/testify v1.8.1
+	github.com/jackc/pgx/v5 v5.9.0
+	github.com/stretchr/testify v1.11.1
 	google.golang.org/protobuf v1.36.10
 )
 
